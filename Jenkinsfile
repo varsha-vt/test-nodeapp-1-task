@@ -27,6 +27,7 @@ pipeline{
                     sh 'echo "SSH complete"'
                     sh 'aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 270335494562.dkr.ecr.us-east-1.amazonaws.com'
                     sh 'sudo docker pull 270335494562.dkr.ecr.us-east-1.amazonaws.com/demovt:v${BUILD_NUMBER}'
+                    sh 'sudo docker run -d -p 8081:8081 270335494562.dkr.ecr.us-east-1.amazonaws.com/demovt:v${BUILD_NUMBER} --name app_assignment'
                 }
                 sh 'echo "Deploying the docker image to app vm complete"' 
             }
