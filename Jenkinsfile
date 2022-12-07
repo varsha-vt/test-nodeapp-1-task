@@ -21,7 +21,7 @@ pipeline{
         }
         stage('Docker deploy'){
             steps{
-                sshagent(credentials : ['ubuntu']) {
+                sshagent(credentials : ['worker']) {
                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@10.100.4.176 uptime'
                     sh 'ssh -v ubuntu@10.100.4.176'
                     sh 'echo "SSH complete"'
